@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-// #define TEST
 // #define COUTBUFFER
 using namespace std;
 
@@ -45,7 +44,6 @@ int Addnol(string &first, string &second) {
 
 void multiply(string a, string b){
     Addnol(a,b);
-    //int multi=1;
     vector<int> first, second;
     if (AbiggerB(a,b)){
         for(int i=0;i<a.size();i++){
