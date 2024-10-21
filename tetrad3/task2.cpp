@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-// #define COUTBUFFER
 using namespace std;
 
 
@@ -92,14 +91,7 @@ void multiply(string a, string b){
         }
         pozition+=1; 
     }
-#ifdef COUTBUFFER
-    for(int i=0;i<second.size();i++){
-        for(int j=0; j<(first.size()+second.size()+1);j++){
-            cout<<buffer[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-#endif
+    
     buff=0;
     int counter=0;
     vector<int> otvet;
