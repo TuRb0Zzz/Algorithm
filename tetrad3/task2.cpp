@@ -42,6 +42,10 @@ int Addnol(string &first, string &second) {
 }
 
 void multiply(string a, string b){
+    if(a=="0" or b=="0"){
+        cout<<0;
+        return;
+    }
     Addnol(a,b);
     vector<int> first, second;
     if (AbiggerB(a,b)){
