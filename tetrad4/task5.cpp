@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int func(int n){
@@ -11,10 +10,11 @@ int func(int n){
             return func(n/2);
         }
         else{
-            return func((n-1)/2) +func(((n-1)/2)+1); 
+            return func((n-1)/2) + func((n-1)/2+1);
         }
     }
 }
+
 
 int main(){
     int n;
