@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 struct Node
 {
     int data;
@@ -24,38 +25,6 @@ void append(Node** head,int data){
     last->next=new_Node;
     new_Node->prev=last;
     (*head)->prev=new_Node;
-}
-
-void checkLoop(Node* head){
-    if(head==nullptr){
-        cout<<"Empty LL"<<endl;
-        return;
-    }
-    Node* one = head;
-    Node* two = head;
-    do{
-        one=one->next;
-        two=two->next->next;
-    }while(one!=two || one==nullptr || two==nullptr);
-    if(one==two){
-        cout<<"Loop found"<<endl;
-    }else{
-        cout<<"No loop found"<<endl;
-    }
-}
-
-void display(Node* head){
-    if(head==nullptr){
-        cout<<"Empty LL"<<endl;
-        return;
-    }
-    Node* last=head;
-    while(last->next!=head){
-        cout<<last->data<<" ";
-        last=last->next;
-    }
-    cout<<last->data<<" ";
-    cout<<endl;
 }
 
 void deleteData(Node** head,int Data_to_delete){
@@ -86,16 +55,38 @@ void deleteData(Node** head,int Data_to_delete){
     }
 }
 
+void display(Node* head,bool reverse = false){
+    if(head==nullptr){
+        cout<<"Empty LL"<<endl;
+        return;
+    }
+    Node* last=head;
+    if(!reverse){
+        while(last->next!=head){
+            cout<<last->data<<" ";
+            last=last->next;
+        }
+        cout<<last->data<<" ";
+        cout<<endl;
+    }else{
+        while(last->prev!=head){
+            cout<<last->data<<" ";
+            last=last->prev;
+        }
+        cout<<last->data<<" ";
+        cout<<endl;
+    }
+}
 
-int main(){
-    Node* main = nullptr;
-    append(&main,1);
-    append(&main,2);
-    append(&main,3);
-    deleteData(&main,3);
-    deleteData(&main,2);
-    deleteData(&main,1);
-    display(main);
-    checkLoop(main);
-    return 0;
+int CountData(Node* head){
+    if(head==nullptr){
+        return 0;
+    }
+    int count=1;
+    Node* last=head;
+    while(last->next!=head){
+        count+=1;
+        last=last->next;
+    }
+    return count;
 }
