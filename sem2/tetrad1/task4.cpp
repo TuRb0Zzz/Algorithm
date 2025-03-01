@@ -16,7 +16,8 @@ void append(Node** head,int data){
     new_Node->next=*head;
     if(*head==nullptr){
         *head=new_Node;
-        new_Node->prev=nullptr;
+        new_Node->next=*head;
+        new_Node->prev=*head;
         return;
     }
     while(last->next!=nullptr and last->next!=*head){
@@ -69,7 +70,8 @@ void display(Node* head,bool reverse = false){
         cout<<last->data<<" ";
         cout<<endl;
     }else{
-        while(last->prev!=head){
+        last=head->prev;
+        while(last!=head){
             cout<<last->data<<" ";
             last=last->prev;
         }
@@ -89,4 +91,37 @@ int CountData(Node* head){
         last=last->next;
     }
     return count;
+}
+
+void appendPrev(Node** head, int data,int dataPrev){
+    Node* last=*head;
+    while(last->data!=dataPrev){
+        last=last->next;
+        if(last==*head){
+            printf("No %d in LL",dataPrev);
+            return;
+        }
+    }
+    Node* new_Node = new Node();
+    new_Node->data=data;
+    new_Node->next=last;
+    if(last==*head){
+        *head=new_Node;
+    }
+    new_Node->prev=last->prev;
+    last->prev->next=new_Node;
+    last->prev=new_Node;
+}
+
+
+
+int main(){
+    Node* main = nullptr;
+    append(&main,1);
+    append(&main,2);
+    append(&main,3);
+    append(&main,4);
+    appendPrev(&main,90,4);
+    display(main);
+    display(main,true);
 }

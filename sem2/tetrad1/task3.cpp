@@ -15,7 +15,8 @@ void append(Node** head,int data){
     new_Node->next=*head;
     if(*head==nullptr){
         *head=new_Node;
-        new_Node->prev=nullptr;
+        new_Node->next=*head;
+        new_Node->prev=*head;
         return;
     }
     while(last->next!=nullptr and last->next!=*head){
@@ -44,18 +45,28 @@ void checkLoop(Node* head){
     }
 }
 
-void display(Node* head){
+void display(Node* head,bool reverse = false){
     if(head==nullptr){
         cout<<"Empty LL"<<endl;
         return;
     }
     Node* last=head;
-    while(last->next!=head){
+    if(!reverse){
+        while(last->next!=head){
+            cout<<last->data<<" ";
+            last=last->next;
+        }
         cout<<last->data<<" ";
-        last=last->next;
+        cout<<endl;
+    }else{
+        last=head->prev;
+        while(last!=head){
+            cout<<last->data<<" ";
+            last=last->prev;
+        }
+        cout<<last->data<<" ";
+        cout<<endl;
     }
-    cout<<last->data<<" ";
-    cout<<endl;
 }
 
 void deleteData(Node** head,int Data_to_delete){
@@ -86,16 +97,22 @@ void deleteData(Node** head,int Data_to_delete){
     }
 }
 
+int CountData(Node* head){
+    if(head==nullptr){
+        return 0;
+    }
+    int count=1;
+    Node* last=head;
+    while(last->next!=head){
+        count+=1;
+        last=last->next;
+    }
+    return count;
+}
 
 int main(){
     Node* main = nullptr;
-    append(&main,1);
-    append(&main,2);
-    append(&main,3);
-    deleteData(&main,3);
-    deleteData(&main,2);
-    deleteData(&main,1);
-    display(main);
-    checkLoop(main);
+    // append(&main,1);
+    cout<<CountData(main);
     return 0;
 }
