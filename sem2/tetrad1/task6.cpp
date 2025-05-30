@@ -106,5 +106,6 @@ Node* DeleteNode(Node* root, int data) {
 int main(){
     Node* root=nullptr;
     fillTree(&root,5);
+    preorder(root);
     return 0;
 }

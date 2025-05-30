@@ -112,7 +112,7 @@ int CountData(Node* head){
 
 int main(){
     Node* main = nullptr;
-    // append(&main,1);
+    append(&main,1);
     cout<<CountData(main);
     return 0;
 }
